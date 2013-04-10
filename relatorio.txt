@@ -4,6 +4,8 @@ Gervasio Santos - 7990996
 Vinicius Vendramini - 7991103
 ----------------------------------
 
+INSTRUCOES PARA COMPILACAO: esta incluso um makefile no .zip submetido ao paca. O arquivo
+
 Este EP apresenta dois problemas principais: descobrir se um numero e' um numero de armstrong ou nao, e gerenciar a abertura, leitura e fechamento de arquivos.
 No arquivo em assembly, comecamos por abrir ambos os arquivos atraves de uma chamada do fopen (o de entrada e o de saida), cujos nomes foram passados como parametros da funcao. Em seguida, entramos em um loop no qual chamamos scanf para ler o proximo numero do arquivo de entrada e chamamos outra funcao em assembly (testaarmstrong) para checar se o numero lido e' de armstrong ou nao.
 Essa funcao usa outras duas funcoes, implementadas no arquivo testaarmstrong.s. A primeira e' a potencia, que retorna o valor de a^b, e a segunda e' descobredigitos, que retorna o numero de digitos em um dado int.
