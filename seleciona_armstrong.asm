@@ -1,3 +1,7 @@
+	;; Vinicius Vendramini - NUSP: 7991103
+	;; Gervasio Santos - NUSP: 7990996
+	;; EP1 de LabProg - Primeiro Semestre de 2013
+	
 section .data
 	
     moderead: db "r",0 		;modo de leitura de arquivos
