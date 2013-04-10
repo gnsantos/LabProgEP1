@@ -20,10 +20,10 @@ section .text
     extern fclose
     extern fscanf
     extern testaarmstrong
-    global seleciona_armstrong
+    global seleciona_armstrongs
 
 	;;  le arquivo de texto e faz o que o enunciado pede
-seleciona_armstrong:        
+seleciona_armstrongs:        
     push ebp 			;salva base da pilha
     mov ebp,esp 		
 
