@@ -1,0 +1,41 @@
+----------------------------------
+EP1 - LabProg
+Gervasio Santos - 7990996
+Vinicius Vendramini - 7991103
+----------------------------------
+
+Este EP apresenta dois problemas principais: descobrir se um numero e' um numero de armstrong ou nao, e gerenciar a abertura, leitura e fechamento de arquivos.
+No arquivo em assembly, comecamos por abrir ambos os arquivos atraves de uma chamada do fopen (o de entrada e o de saida), cujos nomes foram passados como parametros da funcao. Em seguida, entramos em um loop no qual chamamos scanf para ler o proximo numero do arquivo de entrada e chamamos outra funcao em assembly (testaarmstrong) para checar se o numero lido e' de armstrong ou nao.
+Essa funcao usa outras duas funcoes, implementadas no arquivo testaarmstrong.s. A primeira e' a potencia, que retorna o valor de a^b, e a segunda e' descobredigitos, que retorna o numero de digitos em um dado int.
+Caso a funcao retorne 1, o numero e' de armstrong, entao escrevemos ele no arquivo de saida usando fprintf e adicionamos 1 no contador de numeros.
+Ao final da funcao, fechamos ambos os arquivos e retornamos a quantidade de numeros de armstrong encontrada.
+
+Para testar a eficiencia do programa, implementamos uma funcao parecida em C e usamos a biblioteca time.h para comparar o tempo que cada um demorou. Os resultados estao na table a seguir.
+
+
+  100 mil   |  1 milhao  | 10 milhoes |  50 milhoes  | 100 milhoes
+            |            |            |              |
+__C_____A___|__C_____A___|__C______A__|___C______A_ _|__C_______A__
+            |            |            |              |
+ 0.09  0.06 | 0.82  0.49 | 9.18  5.01 | 42.82  25.33 | 85.08  49.95
+ 0.09  0.05 | 0.84  0.50 | 8.33  5.00 | 41.54  24.96 | 83.42  50.23
+ 0.10  0.05 | 0.87  0.50 | 8.44  4.99 | 41.26  24.98 | 81.94  49.87
+ 0.08  0.06 | 0.85  0.50 | 8.42  5.05 | 42.22  25.15 | 84.33  50.07
+ 0.10  0.05 | 0.82  0.50 | 8.43  5.00 | 41.66  25.00 | 84.13  49.92
+ 0.09  0.06 | 0.85  0.50 | 8.64  5.00 | 42.12  25.06 | 84.46  50.24
+ 0.08  0.06 | 0.84  0.51 | 8.51  4.98 | 42.13  24.92 | 81.88  50.58
+ 0.09  0.05 | 0.82  0.50 | 8.45  5.00 | 42.10  24.95 | 82.21  49.95
+ 0.08  0.06 | 0.86  0.51 | 8.34  5.04 | 41.08  24.95 | 84.26  50.61
+ 0.09  0.05 | 0.83  0.50 | 8.43  4.99 | 42.72  25.27 | 84.66  50.04
+____________|____________|____________|______________|_____________
+            |            |            |              |
+ 0.08  0.05 | 0.84  0.50 | 8.51  5.00 | 41.97  25.05 | 83.63  50.14  <- Media
+
+Os programas foram rodados em um compurtador da rede linux, com as configuracoes:
+
+Memoria: 3.37GB
+CPU: AMD Phenom II X6 1055T
+Processamento: 800MHz
+Mem cache: 512kb
+
+O gcc gera um codigo em assembly a partir do C, mas como a traducao e' automatica entre as linguagens o codigo nao e' tao eficiente quanto poderia ser. Como a linguagem C e' de mais alto nivel que o assembly e e' compilada, a diferenca de tempo deu-se uma vez que o C realiza varias operacoes desnecessarias para evitar erros na sua propria sintaxe e tornar a criacao de codigo mais facil, apesar de mais lenta. Em outras palavras, a linguagem Assembly e' mais rapida por seu interfaceamento direto com o sistema.
