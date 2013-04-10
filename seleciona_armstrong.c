@@ -1,3 +1,10 @@
+/*
+Vinicius Vendramini - NUSP: 7991103
+Gervasio Santos - NUSP: 7990996
+EP1 de LabProg - primeiro semestre de 2013
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
