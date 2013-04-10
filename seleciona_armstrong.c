@@ -4,7 +4,7 @@
 
 #define STRING_MAX 80
 
-int seleciona_armstrong(char* entrada, char* saida);
+int seleciona_armstrongs(char* entrada, char* saida);
 
 int main (int argc, char *argv[]) {
 	int soma;
@@ -21,7 +21,7 @@ int main (int argc, char *argv[]) {
 
 	  inicio = clock(); /* marca o horario de inicio da execucao */
 
-	  soma = seleciona_armstrong(nomeArquivoEntrada, nomeArquivoSaida);
+	  soma = seleciona_armstrongs(nomeArquivoEntrada, nomeArquivoSaida);
 
 	  fim = clock(); /* marca horario de fim da execucao */
 	  tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
@@ -31,7 +31,7 @@ int main (int argc, char *argv[]) {
 	else if(argc == 3){
 	  inicio = clock(); /* marca o horario de inicio da execucao */
 
-	  soma = seleciona_armstrong(argv[1], argv[2]);
+	  soma = seleciona_armstrongs(argv[1], argv[2]);
 
 	  fim = clock(); /* marca horario de fim da execucao */
 	  tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
