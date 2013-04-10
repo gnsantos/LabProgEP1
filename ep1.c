@@ -1,45 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
-FILE* randomNumberList(int seed, int n, char name[]){
-  unsigned int random;
-  int i;
-  FILE *saida;
-  srand(seed);
-  saida = fopen(name, "w");
-  for(i = 0; i < n; i++){
-    random = (unsigned int) rand();
-    fprintf(saida, "%d ", random);
-  }
-  return saida;
-}
+#define STRING_MAX 80
 
-int ehArmstrong(unsigned int n){
-  int digitos = (int) log10(n) + 1;
-  int i, sum = 0, aux = n;
-  for( i = 0; i < digitos; i++){
-    sum += pow(n%10, digitos);
-    n /= 10;
+
+int ehArmstrong(char *arqentrada, char* arqsaida){
+  FILE* entrada, *saida;
+  int cont = 0;
+  int digitos;
+  int i, sum = 0, aux, n;
+  
+  entrada = fopen(arqentrada, "r");
+  saida = fopen(arqsaida, "w");
+  
+  while( fscanf(entrada, "%d", &n) != EOF  ){
+    aux = n;
+    digitos = (int)log10(n) +1;
+    sum = 0;
+    for( i = 0; i < digitos; i++){
+      sum += pow(n%10, digitos);
+      n /= 10;
+    }
+    if( sum == aux){
+      cont++;
+      fprintf(saida, "%d ");
+    }
   }
-  if( sum == aux) return 1;
-  return 0;
+ 
+  return cont;
 }
 
 int main(int argc, char* argv[]){
-  unsigned int num;
-  int cont = 0;
-  FILE *entrada, *saida;
+  	int soma;
+	char nomeArquivoEntrada[STRING_MAX], nomeArquivoSaida[STRING_MAX];
+	clock_t inicio, fim;
+	double tempo_execucao;
+	
+	if(argc != 3){
+	  printf("Entre o nome do arquivo de entrada: ");
+	  scanf("%s", nomeArquivoEntrada);
+	
+	  printf("Entre o nome do aruivo de saida: ");	
+	  scanf("%s", nomeArquivoSaida);
 
-  entrada = randomNumberList(10, 100000000, argv[1]);
-  saida = fopen(argv[2], "w");
-  while( fscanf(entrada, "%d", &num) != EOF ){
-    if(ehArmstrong(num)){
-      cont++;
-      fprintf(saida, "%d\n", num);
-    }
-  }
-  printf("Ha %d numeros de Armstrong no arquivo de entrada\n", cont);
-  fclose(entrada); fclose(saida);
-  return 0;
+	  inicio = clock(); /* marca o horario de inicio da execucao */
+
+	  soma = ehArmstrong(nomeArquivoEntrada, nomeArquivoSaida);
+
+	  fim = clock(); /* marca horario de fim da execucao */
+	  tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+	  printf("A execucao da funcao levou %f segundos \n", tempo_execucao);
+	}
+	
+	else if(argc == 3){
+	  inicio = clock(); /* marca o horario de inicio da execucao */
+
+	  soma = ehArmstrong(argv[1], argv[2]);
+
+	  fim = clock(); /* marca horario de fim da execucao */
+	  tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+	  printf("A execucao da funcao levou %f segundos \n", tempo_execucao);
+	}
+
+	printf("%d numero(s) de Armstrong encontrado(s).\n", soma);
+	return 0;
+  
 }
