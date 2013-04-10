@@ -4,7 +4,19 @@ Gervasio Santos - 7990996
 Vinicius Vendramini - 7991103
 ----------------------------------
 
-INSTRUCOES PARA COMPILACAO: esta incluso um makefile no .zip submetido ao paca. O arquivo
+INSTRUCOES PARA COMPILACAO: esta incluso um makefile no .zip submetido ao paca que compila a versao em Assembly. O make file chamara o gas para compilar testaarmstrong.s, que contem  funcao para verificar se um numero e'numero de 
+armstrong; o nasm para compilar seleciona_armstrong.asm, que abre um arquivo de entrada, o le abusca de numeros de armstrong e, caso os encontre, os imprime no arquivo de saida. Por fim, chama o gcc, que linka testaarmstrong.o, 
+seleciona_armstrong.o e seleciona_armstrong.c, que por sua vez e' uma funcao em C que chama seleciona_armstrongs (implementa em seleciona_armstrong.asm). No codigo em C, foi incluso o codigo para calculo do tempo, presente no
+enunciado e usado para calcular os tempos abaixo. Ele deve ser compilado com gcc -o prog ep1.c. Os argumentos podem ser passados tanto na linha de comando quanto pelo stdin. Se nao houver argumentos na linha de comando, o programa lhe  pede manualmente o nome dos argumentos.
+
+Esta presente tambem um arquivo ep1.c, que implementa em C uma funcao que resolve o problema proposto e que foi utilizado na comparacao de eficiencia. Ele deve ser compilado com gcc -o prog ep1.c. Os argumentos podem ser passados tanto
+na linha de comando quanto pelo stdin. Se nao houver argumentos na linha de comando, o programa lhe pede manualmente o nome dos argumentos.
+
+Por fim, temos o arquivo geraAl.c, que gera numeros aleatorios usados. Deve ser compilado usando o gcc. Seus argumentos devem ser passados na linha de comando
+    ex: ./geraAl  s arquivo_de_saida.txt numero_de_pontos_a_gerar seed -> gera numeros sequenciais
+    	./geraAl  r arquivo_de_saida.txt numero_de_pontos_a_gerar seed -> gera numeros aleatorios
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Este EP apresenta dois problemas principais: descobrir se um numero e' um numero de armstrong ou nao, e gerenciar a abertura, leitura e fechamento de arquivos.
 No arquivo em assembly, comecamos por abrir ambos os arquivos atraves de uma chamada do fopen (o de entrada e o de saida), cujos nomes foram passados como parametros da funcao. Em seguida, entramos em um loop no qual chamamos scanf para ler o proximo numero do arquivo de entrada e chamamos outra funcao em assembly (testaarmstrong) para checar se o numero lido e' de armstrong ou nao.
