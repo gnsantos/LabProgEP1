@@ -12,7 +12,8 @@ int main (int argc, char *argv[]) {
   }
   else
     puts("Nao eh armstrong");
-
+  
+  puts("foo");
   return 0;
 
 }

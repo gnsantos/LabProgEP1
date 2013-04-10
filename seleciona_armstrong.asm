@@ -1,14 +1,15 @@
 section .data
-
-    finname: db "data.txt",0
+	
     moderead: db "r",0
-	foutname: db "saida.txt",0
 	modewrite: db "w",0
     format: db "%d",0
 
 	mensagem: db "testando",10,0
 	string: db "%d ",10,0
-
+	
+	entrada: equ 8
+	saida: equ 12
+	
 section .bss
     y resd 1
     finp resd 1
@@ -28,13 +29,13 @@ seleciona_armstrong:
 
 	;Call fopen na entrada
     push moderead
-    push finname
-    call fopen    
+    push dword[ebp+entrada]
+    call fopen
     mov [finp], eax ;store file pointer
 	add esp, 8
 
 	push modewrite
-	push foutname
+	push dword[ebp+saida]
 	call fopen
 	mov [foutp], eax
 	add esp, 8

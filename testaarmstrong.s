@@ -43,9 +43,9 @@ potencia:
 	push ebp		
 	mov ebp, esp		
 	mov ecx, [ebp+b]	
-	dec ecx			
+	#dec ecx			
 	mov ebx, [ebp+a]	
-	mov eax, ebx	
+	mov eax, 1	
 	
 looop:
 	mul ebx			
@@ -62,9 +62,8 @@ fim:
 
 testaarmstrong:
 	push ebp
-	#push eax
 	mov ebp, esp
-
+	
 	sub esp, 16
 
 	mov eax, [ebp+f]
@@ -112,18 +111,16 @@ laco:
 
 end:
 	add esp, 16
-	#mov eax, [ebp+sum]
 	cmp eax, [ebp+f]
 	je returntrue
-	#pop eax
 	mov eax, 0
+	mov esp, ebp
 	pop ebp
 	ret
 
 returntrue:
-	#pop eax
 	mov eax, 1
-	#pop eax
+	mov esp, ebp
 	pop ebp
 	ret
 	
